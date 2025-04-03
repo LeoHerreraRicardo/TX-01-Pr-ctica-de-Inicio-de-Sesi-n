@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const csrf = require("csrf");
 const dotenv = require("dotenv");
 const crypto = require("crypto");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -22,6 +23,10 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+  origin: "http://localhost:3001",
+  credentials: true,
+}));
 
 app.get("/", (req, res) => {
   console.log("hola mundo");
